@@ -175,14 +175,14 @@ int drawCutScreen() {
   int finger_num = 1;
   lcd.clear();
   lcd.setCursor(0, 0);
-  float cuts = finger_width / (blade_kerf);
+  float cuts = (finger_width-blade_kerf) / (blade_kerf);
   int int_cuts = (int) ceil(cuts);
-  float move_dist = finger_width / int_cuts;
+  float move_dist = (finger_width-blade_kerf) / int_cuts;
   while (true) {
     lcd.clear();
     lcd.print("Moving...");
-    lcd.print(finger_width, 3);//+blade_kerf, 3);
-    jig.move(finger_width);// + blade_kerf);
+    lcd.print(finger_width+blade_kerf, 3);
+    jig.move(finger_width + blade_kerf);
     lcd.clear();
     int option = drawCutMenu();
     if (option == 1) {
